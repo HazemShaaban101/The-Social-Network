@@ -12,15 +12,38 @@ import {
 	NavbarLink,
 	NavbarToggle,
 } from "flowbite-react";
+import { theme } from "flowbite-react/plugin/tailwindcss/theme";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar({ isDark, toggleDark }) {
+	isDark
+		? document.documentElement.classList.add("dark")
+		: document.documentElement.classList.remove("dark");
+
+	window.FontAwesomeConfig = {
+		autoReplaceSvg: false,
+	};
+
+	let [themeIcon, setThemeIcon] = useState("fa fa-sun");
+
+	function toggleTheme() {
+		toggleDark();
+		changeIcon();
+	}
+
+	function changeIcon() {
+		themeIcon === "fa fa-sun"
+			? setThemeIcon("fa fa-moon")
+			: setThemeIcon("fa fa-sun");
+	}
+
 	return (
-		<Navbar fluid rounded className="dark:bg-teal-800">
+		<Navbar fluid rounded className="bg-teal-800 ">
 			<NavbarBrand as={Link} to={"/"}>
 				{/* Replace me with the project LOGO */}
 				<i className="fa fa-error text-4xl text-red-600"></i>{" "}
-				<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-teal-300">
+				<span className="self-center whitespace-nowrap text-xl font-semibold text-teal-400">
 					Socializze
 				</span>
 			</NavbarBrand>
@@ -88,10 +111,18 @@ export default function NavBar() {
 							className="dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 w-full">
 							Login
 						</Button>
-						<Button className="dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 w-full">
+						<Button
+							as={Link}
+							to={"/register"}
+							className="dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 w-full">
 							Register
 						</Button>
 					</div>
+					<Button
+						className="md:mr-3 my-2 aspect-square dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600"
+						onClick={toggleTheme}>
+						<i className={themeIcon}></i>
+					</Button>
 				</NavbarCollapse>
 			)}
 		</Navbar>
