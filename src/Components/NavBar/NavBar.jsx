@@ -39,7 +39,7 @@ export default function NavBar({ isDark, toggleDark }) {
 	}
 
 	return (
-		<Navbar fluid rounded className="bg-teal-800 ">
+		<Navbar fluid rounded className="bg-teal-800 sticky top-0 w-full z-10">
 			<NavbarBrand as={Link} to={"/"}>
 				{/* Replace me with the project LOGO */}
 				<i className="fa fa-error text-4xl text-red-600"></i>{" "}

@@ -6,6 +6,8 @@ import { useState } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import registerImg from "../../assets/Sign up.gif";
+import { Bounce, toast, ToastContainer } from "react-toastify";
+import axios from "axios";
 
 export default function Register() {
 	// zod schema
@@ -34,7 +36,38 @@ export default function Register() {
 		.refine((data) => data.rePassword === data.password, {
 			message: "Password mismatch!",
 			path: ["rePassword"],
-		});
+		})
+		.refine(
+			(data) => {
+				const userDate = new Date(`${data.dateOfBirth}` + `T03:24:00`);
+				const currentDate = new Date();
+				if (userDate > currentDate) {
+					return false;
+				}
+				return true;
+			},
+			{
+				message: "Invalid date, cannot choose a date in the future!",
+				path: ["dateOfBirth"],
+			}
+		)
+		.refine(
+			(data) => {
+				const userDate = new Date(`${data.dateOfBirth}` + `T03:24:00`);
+				const currentDate = new Date();
+				console.log(userDate.getFullYear());
+				console.log(currentDate.getFullYear());
+
+				if (userDate.getFullYear() - currentDate.getFullYear() < 18) {
+					return false;
+				}
+				return true;
+			},
+			{
+				message: "User has to be 18+ years old!",
+				path: ["dateOfBirth"],
+			}
+		);
 
 	// form handling
 	const { control, handleSubmit, formState, setError } = useForm({
@@ -51,6 +84,41 @@ export default function Register() {
 
 	function onsubmit(data) {
 		userAgreement && console.log(data);
+		axios
+			.post("https://linked-posts.routemisr.com/users/signup", data)
+			.then((response) => {
+				console.log(response.data.message);
+				if (response.data.message == "success") {
+					toast.success(
+						"User added successfully! Welcome to the circle",
+						{
+							position: "top-center",
+							autoClose: 5000,
+							hideProgressBar: false,
+							closeOnClick: false,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+							transition: Bounce,
+						}
+					);
+				}
+			})
+			.catch((error) => {
+				console.log(error.response.data.error);
+				toast.error(error.response.data.error, {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: false,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+					transition: Bounce,
+				});
+			});
 	}
 
 	// state handling for userAgreement
@@ -62,8 +130,8 @@ export default function Register() {
 	return (
 		<div className="w-full dark:bg-[#06606e]">
 			<div className="container mx-auto">
-				<div className="w-full flex">
-					<div className="flex-1 flex justify-center items-center rounded-3xl overflow-hidden">
+				<div className="w-full flex gap-3">
+					<div className="flex-1 hidden md:flex justify-center items-center rounded-3xl overflow-hidden">
 						<img
 							src={registerImg}
 							alt="sign-up image"
@@ -71,7 +139,7 @@ export default function Register() {
 						/>
 					</div>
 					<div className="flex-1 flex justify-center">
-						<form className="flex max-w-md flex-col gap-4 w-full my-5 shadow-2xl shadow-teal-700 dark:shadow-black rounded-2xl p-3">
+						<form className="flex max-w-md flex-col gap-4 w-full my-5 shadow-2xl dark:bg-[#1f2937] shadow-teal-700 dark:shadow-black rounded-2xl p-3">
 							{/* name input */}
 							<div>
 								<div className="mb-1 ml-1 block">
@@ -251,12 +319,12 @@ export default function Register() {
 										/>
 									)}
 								/>
-								{formState.errors.dateOfBirth &&
-									formState.touchedFields.dateOfBirth && (
+								{formState.errors?.dateOfBirth &&
+									formState.touchedFields?.dateOfBirth && (
 										<p className="bg-red-300 border-red-500 text-red-500 rounded-lg p-1.5 mt-1">
 											{
-												formState.errors.dateOfBirth
-													.message
+												formState.errors?.dateOfBirth
+													?.message
 											}
 										</p>
 									)}
@@ -334,6 +402,7 @@ export default function Register() {
 							</Button>
 						</form>
 					</div>
+					<ToastContainer />
 				</div>
 			</div>
 		</div>

@@ -5,11 +5,15 @@ import homePic from "../../assets/Social interaction.gif";
 export default function Home() {
 	return (
 		<>
-			<div className="w-full dark:bg-[#06606e]">
+			<div className="w-full dark:bg-[#06606e] overflow-auto">
 				<div className="container mx-auto">
-					<div className="flex">
+					<div className="flex mt-10">
 						<div className="flex-1">
-							<img src={homePic} alt="home pic for socializze" />
+							<img
+								src={homePic}
+								alt="home pic for socializze"
+								className="rounded-2xl"
+							/>
 						</div>
 						<div className="flex-1 flex items-center justify-center flex-wrap content-center">
 							<h1 className="text-center text-[#06606e] dark:text-white text-6xl">
