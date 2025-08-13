@@ -1,5 +1,5 @@
 import { Button, Checkbox, Label, Radio, TextInput } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 // import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
@@ -8,8 +8,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import registerImg from "../../assets/Sign up.gif";
 import axios from "axios";
 import { Bounce, toast, ToastContainer } from "react-toastify";
+import ForwardToFeed from "../ForwardToFeed/ForwardToFeed";
 
 export default function Login() {
+	// if user data is saved, forward user to feed page
+	if (localStorage.getItem("socializzeUser")) {
+		return <ForwardToFeed />;
+	}
+
+	// navigation function
+	const navigate = useNavigate();
 	// zod schema
 	const zodSchema = z.object({
 		email: z.email("Invalid email format"),
@@ -44,10 +52,12 @@ export default function Login() {
 						theme: "colored",
 						transition: Bounce,
 					});
+
+					navigate("/Feed");
 				}
 			})
 			.catch((error) => {
-				console.log(error.response.data.error);
+				console.log(error);
 
 				toast.error("Email or password mismatch", {
 					position: "top-center",
@@ -139,7 +149,6 @@ export default function Login() {
 								className="dark:bg-teal-500 dark:hover:bg-teal-600 dark:shadow">
 								Login
 							</Button>
-							<ToastContainer />
 						</form>
 					</div>
 				</div>

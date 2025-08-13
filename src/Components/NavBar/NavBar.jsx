@@ -14,12 +14,14 @@ import {
 } from "flowbite-react";
 import { theme } from "flowbite-react/plugin/tailwindcss/theme";
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 export default function NavBar({ isDark, toggleDark }) {
 	isDark
 		? document.documentElement.classList.add("dark")
 		: document.documentElement.classList.remove("dark");
+
+	const navigate = useNavigate();
 
 	window.FontAwesomeConfig = {
 		autoReplaceSvg: false,
@@ -75,7 +77,13 @@ export default function NavBar({ isDark, toggleDark }) {
 							<Link to={"/contact"}>Contact Us</Link>
 						</DropdownItem>
 						<DropdownDivider />
-						<DropdownItem>Sign out</DropdownItem>
+						<DropdownItem
+							onClick={() => {
+								localStorage.removeItem("socializzeUser");
+								navigate("/");
+							}}>
+							Sign out
+						</DropdownItem>
 					</Dropdown>
 				) : (
 					<>

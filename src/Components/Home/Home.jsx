@@ -1,13 +1,18 @@
 import React from "react";
 import style from "./Home.module.css";
 import homePic from "../../assets/Social interaction.gif";
+import ForwardToFeed from "../ForwardToFeed/ForwardToFeed";
 
 export default function Home() {
+	// if user data is saved, forward user to feed page
+	if (localStorage.getItem("socializzeUser")) {
+		return <ForwardToFeed />;
+	}
 	return (
 		<>
 			<div className="w-full dark:bg-[#06606e] overflow-auto">
 				<div className="container mx-auto">
-					<div className="flex mt-10">
+					<div className="flex mt-10 gap-3">
 						<div className="flex-1">
 							<img
 								src={homePic}

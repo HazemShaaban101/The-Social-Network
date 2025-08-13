@@ -8,8 +8,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import registerImg from "../../assets/Sign up.gif";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import axios from "axios";
+import ForwardToFeed from "../ForwardToFeed/ForwardToFeed";
 
 export default function Register() {
+	// if user data is saved, forward user to feed page
+	if (localStorage.getItem("socializzeUser")) {
+		return <ForwardToFeed />;
+	}
 	// zod schema
 	const zodSchema = z
 		.object({
