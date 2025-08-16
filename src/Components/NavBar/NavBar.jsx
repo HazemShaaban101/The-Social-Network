@@ -102,14 +102,14 @@ export default function NavBar({ isDark, toggleDark }) {
 									{data?.data?.user?.email}
 								</span>
 							</DropdownHeader>
-							<DropdownItem>
-								<Link to={"/profile"}>Profile</Link>
+							<DropdownItem as={Link} to={"/profile"}>
+								Profile
 							</DropdownItem>
-							<DropdownItem>
-								<Link to={"/about"}>about</Link>
+							<DropdownItem as={Link} to={"/about"}>
+								about
 							</DropdownItem>
-							<DropdownItem>
-								<Link to={"/contact"}>Contact Us</Link>
+							<DropdownItem as={Link} to={"/contact"}>
+								Contact Us
 							</DropdownItem>
 							<DropdownDivider />
 							<DropdownItem onClick={toggleTheme}>
