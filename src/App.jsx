@@ -9,6 +9,7 @@ import Register from "./Components/Register/Register";
 import NavBar from "./Components/NavBar/NavBar";
 import Profile from "./Components/Profile/Profile";
 import Footer from "./Components/Footer/Footer";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
 	const router = createBrowserRouter([
@@ -24,11 +25,15 @@ function App() {
 			],
 		},
 	]);
+
+	const queryClient = new QueryClient();
 	return (
 		<>
-			<RouterProvider router={router}>
-				<Layout />
-			</RouterProvider>
+			<QueryClientProvider client={queryClient}>
+				<RouterProvider router={router}>
+					<Layout />
+				</RouterProvider>
+			</QueryClientProvider>
 		</>
 	);
 }

@@ -13,8 +13,11 @@ import {
 	NavbarToggle,
 } from "flowbite-react";
 import { theme } from "flowbite-react/plugin/tailwindcss/theme";
-import { useEffect, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import genericProfilePic from "../../assets/generic profile.png";
 
 export default function NavBar({ isDark, toggleDark }) {
 	isDark
@@ -22,10 +25,6 @@ export default function NavBar({ isDark, toggleDark }) {
 		: document.documentElement.classList.remove("dark");
 
 	const navigate = useNavigate();
-
-	window.FontAwesomeConfig = {
-		autoReplaceSvg: false,
-	};
 
 	let [themeIcon, setThemeIcon] = useState("fa fa-sun");
 
@@ -40,6 +39,35 @@ export default function NavBar({ isDark, toggleDark }) {
 			: setThemeIcon("fa fa-sun");
 	}
 
+	// get user data
+	function getUserData() {
+		return axios.get(
+			"https://linked-posts.routemisr.com/users/profile-data",
+			{
+				headers: {
+					token: localStorage.getItem("socializzeUser"),
+					// token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjRiY2YzZTMzZGEyMTdjNGFmMjFmMDAiLCJpYXQiOjE3MTYyNDYyNzJ9.OQe7MoFR8-z4zqJQjSkJxn37guZeKxUSJgMZLSliuVQ",
+				},
+			}
+		);
+	}
+
+	const { data, isLoading, error } = useQuery({
+		queryKey: ["getUserData", localStorage.getItem("socializzeUser")],
+		queryFn: getUserData,
+		staleTime: 200000,
+		retry: false,
+	});
+
+	function couldNotFindUser() {
+		console.log("error finding user");
+		localStorage.removeItem("socializzeUser");
+		navigate("/login");
+	}
+	localStorage.getItem("socializzeUser") && !isLoading && error
+		? couldNotFindUser()
+		: console.log(data);
+
 	return (
 		<Navbar fluid rounded className="bg-teal-800 sticky top-0 w-full z-10">
 			<NavbarBrand as={Link} to={"/"}>
@@ -51,40 +79,54 @@ export default function NavBar({ isDark, toggleDark }) {
 			</NavbarBrand>
 			<div className="flex md:order-2">
 				{localStorage.getItem("socializzeUser") ? (
-					<Dropdown
-						arrowIcon={false}
-						inline
-						label={
-							<Avatar
-								alt="User settings"
-								img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-								rounded
-							/>
-						}>
-						<DropdownHeader>
-							<span className="block text-sm">Bonnie Green</span>
-							<span className="block truncate text-sm font-medium">
-								name@flowbite.com
-							</span>
-						</DropdownHeader>
-						<DropdownItem>
-							<Link to={"/profile"}>Profile</Link>
-						</DropdownItem>
-						<DropdownItem>
-							<Link to={"/about"}>about</Link>
-						</DropdownItem>
-						<DropdownItem>
-							<Link to={"/contact"}>Contact Us</Link>
-						</DropdownItem>
-						<DropdownDivider />
-						<DropdownItem
-							onClick={() => {
-								localStorage.removeItem("socializzeUser");
-								navigate("/");
-							}}>
-							Sign out
-						</DropdownItem>
-					</Dropdown>
+					<>
+						<Dropdown
+							arrowIcon={false}
+							inline
+							label={
+								<Avatar
+									alt="User settings"
+									img={
+										data?.data?.user?.photo
+											? data?.data?.user?.photo
+											: genericProfilePic
+									}
+									rounded
+								/>
+							}>
+							<DropdownHeader>
+								<span className="block text-sm">
+									{data?.data?.user?.name}
+								</span>
+								<span className="block truncate text-sm font-medium">
+									{data?.data?.user?.email}
+								</span>
+							</DropdownHeader>
+							<DropdownItem>
+								<Link to={"/profile"}>Profile</Link>
+							</DropdownItem>
+							<DropdownItem>
+								<Link to={"/about"}>about</Link>
+							</DropdownItem>
+							<DropdownItem>
+								<Link to={"/contact"}>Contact Us</Link>
+							</DropdownItem>
+							<DropdownDivider />
+							<DropdownItem onClick={toggleTheme}>
+								<p className="w-full text-xl m-0 p-0">
+									<i className={themeIcon}></i>
+								</p>
+							</DropdownItem>
+							<DropdownDivider />
+							<DropdownItem
+								onClick={() => {
+									localStorage.removeItem("socializzeUser");
+									navigate("/");
+								}}>
+								Sign out
+							</DropdownItem>
+						</Dropdown>
+					</>
 				) : (
 					<>
 						<NavbarToggle />

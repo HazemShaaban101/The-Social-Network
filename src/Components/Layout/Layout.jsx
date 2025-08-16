@@ -14,16 +14,13 @@ export default function Layout() {
 		setIsDark(!isDark);
 	}
 
-	const queryClient = new QueryClient();
 	return (
 		<>
-			<QueryClientProvider client={queryClient}>
-				<ReactQueryDevtools initialIsOpen={false} />
-				<NavBar isDark={isDark} toggleDark={toggleDark} />
-				<ToastContainer />
-				<Outlet />
-				<Footer />
-			</QueryClientProvider>
+			<ReactQueryDevtools initialIsOpen={false} />
+			<NavBar isDark={isDark} toggleDark={toggleDark} />
+			<ToastContainer />
+			<Outlet />
+			<Footer />
 		</>
 	);
 }
