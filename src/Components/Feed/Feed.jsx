@@ -5,11 +5,14 @@ import axios from "axios";
 import Loading from "../Loading/Loading";
 import PostCard from "../PostCard/PostCard";
 import { CommentViewerModal } from "../CommentViewerModal/CommentViewerModal";
+import AddCommentModal from "../AddCommentModal/AddCommentModal";
 
 export default function Feed() {
 	const queryClient = useQueryClient();
 	const [commentModalPostID, setCommentModalPostID] = useState("");
 	const [openCommentsModal, setOpenCommentsModal] = useState(false);
+	const [addCommentModalPostID, setAddCommentModalPostID] = useState("");
+	const [openAddCommentsModal, setOpenAddCommentsModal] = useState(false);
 	// get feed posts
 	const feed = () => {
 		return axios.get(`https://linked-posts.routemisr.com/posts?limit=50`, {
@@ -31,6 +34,11 @@ export default function Feed() {
 				setOpenModal={setOpenCommentsModal}
 				postID={commentModalPostID}
 			/>
+			<AddCommentModal
+				openModal={openAddCommentsModal}
+				setOpenModal={setOpenAddCommentsModal}
+				postID={addCommentModalPostID}
+			/>
 			{isLoading ? (
 				<div className="h-dvh flex items-center justify-center -translate-y-1/12">
 					<Loading />
@@ -45,6 +53,12 @@ export default function Feed() {
 								post={post}
 								setCommentModalPostID={setCommentModalPostID}
 								setOpenCommentsModal={setOpenCommentsModal}
+								setAddCommentModalPostID={
+									setAddCommentModalPostID
+								}
+								setOpenAddCommentsModal={
+									setOpenAddCommentsModal
+								}
 							/>
 						);
 					})}

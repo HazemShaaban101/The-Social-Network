@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import style from "./PostCard.module.css";
 
-
 export default function PostCard({
 	post,
 	setOpenCommentsModal,
 	setCommentModalPostID,
+	setOpenAddCommentsModal,
+	setAddCommentModalPostID,
 }) {
 	return (
 		<>
@@ -72,6 +73,8 @@ export default function PostCard({
 						className="createComment mx-2"
 						onClick={(e) => {
 							e.stopPropagation();
+							setAddCommentModalPostID(post._id);
+							setOpenAddCommentsModal(true);
 						}}>
 						<button className="w-full p-3 bg-teal-800 rounded-full mt-2 hover:cursor-pointer text-left text-teal-500">
 							Create comment
@@ -79,8 +82,6 @@ export default function PostCard({
 					</div>
 				</div>
 			</div>
-
-			
 		</>
 	);
 }
