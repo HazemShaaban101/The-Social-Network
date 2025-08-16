@@ -88,11 +88,11 @@ export default function Register() {
 	});
 
 	function onsubmit(data) {
-		userAgreement && console.log(data);
+		// userAgreement && console.log(data);
 		axios
 			.post("https://linked-posts.routemisr.com/users/signup", data)
 			.then((response) => {
-				console.log(response.data.message);
+				// console.log(response.data.message);
 				if (response.data.message == "success") {
 					toast.success(
 						"User added successfully! Welcome to the circle",
@@ -111,7 +111,7 @@ export default function Register() {
 				}
 			})
 			.catch((error) => {
-				console.log(error.response.data.error);
+				// console.log(error.response.data.error);
 				toast.error(error.response.data.error, {
 					position: "top-center",
 					autoClose: 5000,

@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
 	QueryClient,
 	useMutation,
@@ -17,13 +18,30 @@ import {
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import * as z from "zod";
 
 export default function ChangePasswordModal({ openModal, setOpenModal }) {
+	const zodSchema = z
+		.object({
+			password: z.string(),
+			newPassword: z
+				.string()
+				.regex(
+					/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/,
+					"your password isn't strong enough!"
+				),
+		})
+		.refine((data) => data.newPassword !== data.password, {
+			message: "password cannot be the same as old password",
+			path: ["newPassword"],
+		});
+
 	const { control, handleSubmit, formState, reset } = useForm({
 		defaultValues: {
 			password: "",
 			newPassword: "",
 		},
+		resolver: zodResolver(zodSchema),
 	});
 
 	// const queryClient = useQueryClient();
@@ -121,6 +139,12 @@ export default function ChangePasswordModal({ openModal, setOpenModal }) {
 									/>
 								)}
 							/>
+							{formState.errors.newPassword &&
+								formState.touchedFields.newPassword && (
+									<p className="bg-red-300 border-red-500 text-red-500 rounded-lg p-1.5 mt-1">
+										{formState.errors.newPassword.message}
+									</p>
+								)}
 						</div>
 						<Button
 							type="submit"
