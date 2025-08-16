@@ -38,7 +38,7 @@ export default function PostCard({
 				</div>
 
 				<div
-					className="commentSection w-full bg-teal-600 py-3 dark:bg-teal-600 text-white mt-2 rounded-2xl overflow-hidden"
+					className="commentSection w-full  py-3 bg-gradient-to-br from-teal-600 to-teal-400 text-white mt-2 rounded-2xl overflow-hidden"
 					onClick={() => {
 						setCommentModalPostID(post._id);
 						setOpenCommentsModal(true);
@@ -76,7 +76,7 @@ export default function PostCard({
 							setAddCommentModalPostID(post._id);
 							setOpenAddCommentsModal(true);
 						}}>
-						<button className="w-full p-3 bg-teal-800 rounded-full mt-2 hover:cursor-pointer text-left text-teal-500">
+						<button className="w-full p-3 bg-teal-800 rounded-full mt-2 hover:cursor-pointer text-left text-teal-300">
 							Create comment
 						</button>
 					</div>
