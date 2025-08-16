@@ -9,6 +9,7 @@ import Loading from "../Loading/Loading";
 import PostCard from "../PostCard/PostCard";
 import { CommentViewerModal } from "../CommentViewerModal/CommentViewerModal";
 import AddCommentModal from "../AddCommentModal/AddCommentModal";
+import ChangePasswordModal from "../ChangePasswordModal/ChangePasswordModal";
 
 export default function Profile() {
 	// modal states
@@ -16,6 +17,8 @@ export default function Profile() {
 	const [openCommentsModal, setOpenCommentsModal] = useState(false);
 	const [addCommentModalPostID, setAddCommentModalPostID] = useState("");
 	const [openAddCommentsModal, setOpenAddCommentsModal] = useState(false);
+	const [openChangePasswordsModal, setOpenAChangePasswordModal] =
+		useState(false);
 
 	// get user data
 	function getUserData() {
@@ -71,6 +74,10 @@ export default function Profile() {
 				setOpenModal={setOpenAddCommentsModal}
 				postID={addCommentModalPostID}
 			/>
+			<ChangePasswordModal
+				openModal={openChangePasswordsModal}
+				setOpenModal={setOpenAChangePasswordModal}
+			/>
 
 			<div className="userData rounded-b-2xl py-10 bg-gradient-to-br from-teal-600 via-cyan-400 to-teal-800 text-white flex flex-col items-center">
 				<img
@@ -104,7 +111,11 @@ export default function Profile() {
 					<Button className="bg-slate-600 hover:bg-slate-700 focus:bg-slate-800">
 						Upload profile pic
 					</Button>
-					<Button className="bg-slate-600 hover:bg-slate-700 focus:bg-slate-800">
+					<Button
+						className="bg-slate-600 hover:bg-slate-700 focus:bg-slate-800"
+						onClick={() => {
+							setOpenAChangePasswordModal(true);
+						}}>
 						Update password
 					</Button>
 				</div>
