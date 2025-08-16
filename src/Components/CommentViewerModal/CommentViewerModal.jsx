@@ -34,7 +34,11 @@ export function CommentViewerModal({ openModal, setOpenModal, postID }) {
 
 	return (
 		<>
-			<Modal show={openModal} onClose={() => setOpenModal(false)}>
+			<Modal
+				show={openModal}
+				onClose={() => setOpenModal(false)}
+				dismissible
+				position="center">
 				<ModalHeader>Comment section</ModalHeader>
 				<ModalBody>
 					{isLoading ? (

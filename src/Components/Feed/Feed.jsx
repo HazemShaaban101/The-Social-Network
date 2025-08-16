@@ -32,7 +32,9 @@ export default function Feed() {
 				postID={commentModalPostID}
 			/>
 			{isLoading ? (
-				<Loading />
+				<div className="h-dvh flex items-center justify-center -translate-y-1/12">
+					<Loading />
+				</div>
 			) : (
 				<div className="flex flex-col gap-5 w-10/12 sm:w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12 mx-auto mt-5">
 					{data.data.posts.map((post) => {
