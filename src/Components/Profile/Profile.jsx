@@ -141,6 +141,8 @@ export default function Profile() {
 						User posts
 					</h1>
 
+					<CreatePost />
+
 					{!posts.isLoading ? (
 						posts?.data?.data.posts.map((post) => {
 							return (
