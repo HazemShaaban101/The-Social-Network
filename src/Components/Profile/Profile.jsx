@@ -10,6 +10,8 @@ import PostCard from "../PostCard/PostCard";
 import { CommentViewerModal } from "../CommentViewerModal/CommentViewerModal";
 import AddCommentModal from "../AddCommentModal/AddCommentModal";
 import ChangePasswordModal from "../ChangePasswordModal/ChangePasswordModal";
+import ChangeProfilePicModal from "../ChangeProfilePicModal/ChangeProfilePicModal";
+import CreatePost from "../CreatePost/CreatePost";
 
 export default function Profile() {
 	// modal states
@@ -18,6 +20,8 @@ export default function Profile() {
 	const [addCommentModalPostID, setAddCommentModalPostID] = useState("");
 	const [openAddCommentsModal, setOpenAddCommentsModal] = useState(false);
 	const [openChangePasswordsModal, setOpenAChangePasswordModal] =
+		useState(false);
+	const [openChangeProfilePicModal, setOpenChangeProfilePicModal] =
 		useState(false);
 
 	// get user data
@@ -79,6 +83,12 @@ export default function Profile() {
 				setOpenModal={setOpenAChangePasswordModal}
 			/>
 
+			<ChangeProfilePicModal
+				openModal={openChangeProfilePicModal}
+				setOpenModal={setOpenChangeProfilePicModal}
+				oldPic={data?.data?.user.photo || StandardUserAvatar}
+			/>
+
 			<div className="userData rounded-b-2xl py-10 bg-gradient-to-br from-teal-600 via-cyan-400 to-teal-800 text-white flex flex-col items-center">
 				<img
 					src={
@@ -108,7 +118,11 @@ export default function Profile() {
 				</p>
 
 				<div className="flex gap-5 mt-5">
-					<Button className="bg-slate-600 hover:bg-slate-700 focus:bg-slate-800">
+					<Button
+						className="bg-slate-600 hover:bg-slate-700 focus:bg-slate-800"
+						onClick={() => {
+							setOpenChangeProfilePicModal(true);
+						}}>
 						Upload profile pic
 					</Button>
 					<Button
@@ -126,6 +140,7 @@ export default function Profile() {
 					<h1 className="text-center text-4xl font-mono from-teal-700 to-teal-400 rounded-2xl p-5 text-white bg-gradient-to-br">
 						User posts
 					</h1>
+
 					{!posts.isLoading ? (
 						posts?.data?.data.posts.map((post) => {
 							return (
