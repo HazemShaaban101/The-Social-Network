@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import style from "./PostCard.module.css";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 export default function PostCard({
 	post,
@@ -8,10 +9,18 @@ export default function PostCard({
 	setOpenAddCommentsModal,
 	setAddCommentModalPostID,
 }) {
+	const navigate = useNavigate();
+	const location = useLocation();
 	return (
 		<>
 			<div className="entirePost">
-				<div className="postCard bg-[#f5f5f5] dark:bg-teal-600 w-full drop-shadow-2xl rounded-2xl overflow-hidden">
+				<div
+					className="postCard bg-[#f5f5f5] dark:bg-teal-600 w-full drop-shadow-2xl rounded-2xl overflow-hidden"
+					onClick={() => {
+						if (location.pathname !== `/posts/${post._id}`) {
+							navigate(`/posts/${post._id}`);
+						}
+					}}>
 					<div className="header flex justify-between items-center m-3 mb-0 pb-3 border-b-2 border-b-gray-400">
 						<div className="userData flex gap-3 items-center">
 							<img
