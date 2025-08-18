@@ -15,7 +15,7 @@ export default function PostCard({
 		<>
 			<div className="entirePost">
 				<div
-					className="postCard bg-[#f5f5f5] dark:bg-teal-600 w-full drop-shadow-2xl rounded-2xl overflow-hidden"
+					className="postCard bg-[#f5f5f5] dark:bg-gradient-to-bl dark:from-teal-600  dark:to-teal-300 dark:text-white w-full drop-shadow-2xl rounded-2xl overflow-hidden"
 					onClick={() => {
 						if (location.pathname !== `/posts/${post._id}`) {
 							navigate(`/posts/${post._id}`);

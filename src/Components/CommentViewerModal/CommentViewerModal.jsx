@@ -54,7 +54,9 @@ export function CommentViewerModal({ openModal, setOpenModal, postID }) {
 								data.data.comments.map((comment) => {
 									// console.log(comment);
 									return (
-										<p key={comment._id}>
+										<p
+											key={comment._id}
+											className="dark:text-white">
 											<span className="text-teal-400">
 												{comment.commentCreator.name}:{" "}
 											</span>
