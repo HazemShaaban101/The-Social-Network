@@ -141,29 +141,32 @@ export default function Profile() {
 						User posts
 					</h1>
 
-					<CreatePost />
-
-					{!posts.isLoading ? (
-						posts?.data?.data.posts.map((post) => {
-							return (
-								<PostCard
-									key={post.id}
-									post={post}
-									setCommentModalPostID={
-										setCommentModalPostID
-									}
-									setOpenCommentsModal={setOpenCommentsModal}
-									setAddCommentModalPostID={
-										setAddCommentModalPostID
-									}
-									setOpenAddCommentsModal={
-										setOpenAddCommentsModal
-									}
-								/>
-							);
-						})
+					{posts?.data?.data ? (
+						<>
+							<CreatePost />
+							{posts?.data?.data.posts.map((post) => {
+								return (
+									<PostCard
+										key={post.id}
+										post={post}
+										setCommentModalPostID={
+											setCommentModalPostID
+										}
+										setOpenCommentsModal={
+											setOpenCommentsModal
+										}
+										setAddCommentModalPostID={
+											setAddCommentModalPostID
+										}
+										setOpenAddCommentsModal={
+											setOpenAddCommentsModal
+										}
+									/>
+								);
+							})}
+						</>
 					) : (
-						<div className="h-dvh flex items-center justify-center -translate-y-1/12">
+						<div className="h-dvh flex items-center justify-center -translate-y-5/12">
 							<Loading />
 						</div>
 					)}
