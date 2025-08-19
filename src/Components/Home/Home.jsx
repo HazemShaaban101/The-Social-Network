@@ -12,15 +12,15 @@ export default function Home() {
 		<>
 			<div className="w-full dark:bg-[#06606e] overflow-auto">
 				<div className="container mx-auto">
-					<div className="flex mt-10 gap-3">
-						<div className="flex-1">
+					<div className="flex flex-col md:flex-row items-center mt-10 gap-3">
+						<div className="md:flex-1">
 							<img
 								src={homePic}
 								alt="home pic for socializze"
 								className="rounded-2xl"
 							/>
 						</div>
-						<div className="flex-1 flex items-center justify-center flex-wrap content-center">
+						<div className="md:flex-1 flex items-center justify-center flex-wrap content-center">
 							<h1 className="text-center text-[#06606e] dark:text-white text-6xl">
 								Socializze is the new social media form!
 							</h1>

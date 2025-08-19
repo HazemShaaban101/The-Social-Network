@@ -16,11 +16,13 @@ export default function Layout() {
 
 	return (
 		<>
-			<ReactQueryDevtools initialIsOpen={false} />
-			<NavBar isDark={isDark} toggleDark={toggleDark} />
-			<ToastContainer />
-			<Outlet />
-			<Footer />
+			<div className="bg-teal-200 dark:bg-slate-900">
+				<ReactQueryDevtools initialIsOpen={false} />
+				<NavBar isDark={isDark} toggleDark={toggleDark} />
+				<ToastContainer />
+				<Outlet />
+				<Footer />
+			</div>
 		</>
 	);
 }
