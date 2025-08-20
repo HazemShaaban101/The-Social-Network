@@ -16,7 +16,7 @@ export default function Layout() {
 
 	return (
 		<>
-			<div className="bg-teal-200 dark:bg-slate-900">
+			<div className="">
 				<ReactQueryDevtools initialIsOpen={false} />
 				<NavBar isDark={isDark} toggleDark={toggleDark} />
 				<ToastContainer />

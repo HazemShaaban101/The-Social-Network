@@ -30,8 +30,10 @@ export default function ViewSinglePost() {
 	return (
 		<>
 			{isLoading ? (
-				<div className="h-dvh flex items-center justify-center -translate-y-1/12">
-					<Loading />
+				<div className="">
+					<div className=" flex items-center justify-center translate-y-3/12">
+						<Loading />
+					</div>
 				</div>
 			) : (
 				<>

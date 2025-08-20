@@ -5,7 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import registerImg from "../../assets/Sign up.gif";
+import loginIMG from "../../assets/Sign in.gif";
 import axios from "axios";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import ForwardToFeed from "../ForwardToFeed/ForwardToFeed";
@@ -79,7 +79,7 @@ export default function Login() {
 				<div className="w-full flex gap-3">
 					<div className="flex-1 hidden md:flex justify-center items-center rounded-3xl overflow-hidden">
 						<img
-							src={registerImg}
+							src={loginIMG}
 							alt="sign-up image"
 							className="rounded-3xl"
 						/>

@@ -21,10 +21,10 @@ export default function Home() {
 							/>
 						</div>
 						<div className="md:flex-1 flex items-center justify-center flex-wrap content-center">
-							<h1 className="text-center text-[#06606e] dark:text-white text-6xl">
+							<h1 className="text-center text-[#06606e] dark:text-white lg:text-6xl md:text-4xl sm-text-3xl text-2xl">
 								Socializze is the new social media form!
 							</h1>
-							<h2 className="text-center text-[#8b8f9afd] text-3xl mt-4">
+							<h2 className="text-center text-[#8b8f9afd] lg:text-3xl md:text-2xl sm-text-xl text-lg mt-4">
 								Scroll through cat videos, Make new friends,
 								Share your memories to the world. All that and
 								more on Socializze.

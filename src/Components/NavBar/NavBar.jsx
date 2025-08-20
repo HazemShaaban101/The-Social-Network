@@ -18,6 +18,7 @@ import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import genericProfilePic from "../../assets/generic profile.png";
+import logo from "../../assets/logo.png";
 
 export default function NavBar({ isDark, toggleDark }) {
 	isDark
@@ -72,10 +73,16 @@ export default function NavBar({ isDark, toggleDark }) {
 		<Navbar fluid rounded className="bg-teal-800 sticky top-0 w-full z-10">
 			<NavbarBrand as={Link} to={"/"}>
 				{/* Replace me with the project LOGO */}
-				<i className="fa fa-error text-4xl text-red-600"></i>{" "}
-				<span className="self-center whitespace-nowrap text-xl font-semibold text-teal-400">
-					Socializze
-				</span>
+				<div className="flex bg-teal-200 dark:bg-teal-800 rounded-lg px-2 items-center">
+					<img
+						src={logo}
+						alt="site logo"
+						className=" w-[36px] dark:invert dark:hue-rotate-180"
+					/>
+					<span className="self-center  text-xl  text-teal-800 font-mono font-bold mask-r-from-0% mask-r-to-[290%] mask-b-from-0% mask-b-to-[290%] dark:hue-rotate-180 dark:invert">
+						ocializze
+					</span>
+				</div>
 			</NavbarBrand>
 			<div className="flex md:order-2">
 				{localStorage.getItem("socializzeUser") ? (
