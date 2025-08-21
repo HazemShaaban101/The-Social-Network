@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Feed.module.css";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
@@ -27,6 +27,10 @@ export default function Feed() {
 		queryFn: feed,
 		staleTime: 200000,
 	});
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<>

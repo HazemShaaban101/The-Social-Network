@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Profile.module.css";
 import RouteProtector from "../RouteProtector/RouteProtector";
 import { useQuery } from "@tanstack/react-query";
@@ -63,7 +63,11 @@ export default function Profile() {
 		staleTime: 200000,
 		enabled: !!data?.data?.user?._id,
 	});
-	console.log(data);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<>
 			<RouteProtector />
