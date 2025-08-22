@@ -20,7 +20,7 @@ import axios from "axios";
 import genericProfilePic from "../../assets/generic profile.png";
 import logo from "../../assets/logo.png";
 
-export default function NavBar({ isDark, toggleDark }) {
+export default function NavBar({ isDark, toggleDark, userID, setUserID }) {
 	isDark
 		? document.documentElement.classList.add("dark")
 		: document.documentElement.classList.remove("dark");
@@ -69,6 +69,7 @@ export default function NavBar({ isDark, toggleDark }) {
 		? couldNotFindUser()
 		: console.log(data);
 
+	data?.data && userID != data.data.user._id && setUserID(data.data.user._id);
 	return (
 		<Navbar fluid rounded className="bg-teal-800 sticky top-0 w-full z-10">
 			<NavbarBrand as={Link} to={"/"}>

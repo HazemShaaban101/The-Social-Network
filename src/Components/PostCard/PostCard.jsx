@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import style from "./PostCard.module.css";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import {
+	Navigate,
+	useLocation,
+	useNavigate,
+	useOutletContext,
+} from "react-router-dom";
+import { Button } from "flowbite-react";
+import DelPostBtn from "../DelPostBtn/DelPostBtn";
 
 export default function PostCard({
 	post,
@@ -11,9 +18,12 @@ export default function PostCard({
 }) {
 	const navigate = useNavigate();
 	const location = useLocation();
+
+	const { userID } = useOutletContext();
+
 	return (
 		<>
-			<div className="entirePost">
+			<div className="entirePost relative">
 				<div
 					className="postCard bg-[#f5f5f5] dark:bg-gradient-to-bl dark:from-teal-600  dark:to-teal-300 dark:text-white w-full drop-shadow-2xl rounded-2xl overflow-hidden"
 					onClick={() => {
@@ -90,6 +100,16 @@ export default function PostCard({
 						</button>
 					</div>
 				</div>
+				{post.user._id == userID && (
+					<div className="absolute top-0 left-[102%] h-[100px]  flex flex-col gap-3 justify-center">
+						<Button
+							color={"yellow"}
+							className="w-[40px] h-[40px] rounded-full">
+							<i className="fa fa-pencil-alt"></i>
+						</Button>
+						<DelPostBtn postID={post._id} />
+					</div>
+				)}
 			</div>
 		</>
 	);

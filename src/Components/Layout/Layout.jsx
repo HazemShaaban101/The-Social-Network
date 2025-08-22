@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export default function Layout() {
 	const [isDark, setIsDark] = useState(false);
+	const [userID, setUserID] = useState("");
 
 	function toggleDark() {
 		setIsDark(!isDark);
@@ -18,9 +19,14 @@ export default function Layout() {
 		<>
 			<div className="">
 				<ReactQueryDevtools initialIsOpen={false} />
-				<NavBar isDark={isDark} toggleDark={toggleDark} />
+				<NavBar
+					isDark={isDark}
+					toggleDark={toggleDark}
+					userID={userID}
+					setUserID={setUserID}
+				/>
 				<ToastContainer />
-				<Outlet />
+				<Outlet context={{ userID: userID }} />
 				<Footer />
 			</div>
 		</>
