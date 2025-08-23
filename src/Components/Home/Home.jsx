@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Home.module.css";
 import homePic from "../../assets/Social interaction.gif";
 import ForwardToFeed from "../ForwardToFeed/ForwardToFeed";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
 	// if user data is saved, forward user to feed page
@@ -10,6 +11,9 @@ export default function Home() {
 	}
 	return (
 		<>
+			<Helmet>
+				<title>Socializze Home</title>
+			</Helmet>
 			<div className="w-full dark:bg-[#06606e] overflow-auto">
 				<div className="container mx-auto">
 					<div className="flex flex-col md:flex-row items-center mt-10 gap-3">

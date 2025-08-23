@@ -13,6 +13,7 @@ import ChangePasswordModal from "../ChangePasswordModal/ChangePasswordModal";
 import ChangeProfilePicModal from "../ChangeProfilePicModal/ChangeProfilePicModal";
 import CreatePost from "../CreatePost/CreatePost";
 import EditPostModal from "../EditPostModal/EditPostModal";
+import { Helmet } from "react-helmet";
 
 export default function Profile() {
 	// modal states
@@ -152,6 +153,9 @@ export default function Profile() {
 
 					{posts?.data?.data ? (
 						<>
+							<Helmet>
+								<title>{data?.data?.user.name}'s profile</title>
+							</Helmet>
 							<CreatePost />
 							{posts?.data?.data.posts.map((post) => {
 								return (

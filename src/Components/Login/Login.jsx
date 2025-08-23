@@ -9,6 +9,7 @@ import loginIMG from "../../assets/Sign in.gif";
 import axios from "axios";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import ForwardToFeed from "../ForwardToFeed/ForwardToFeed";
+import { Helmet } from "react-helmet";
 
 export default function Login() {
 	// if user data is saved, forward user to feed page
@@ -74,85 +75,95 @@ export default function Login() {
 	}
 
 	return (
-		<div className="w-full dark:bg-[#06606e] overflow-auto">
-			<div className="container mx-auto my-9">
-				<div className="w-full flex gap-3">
-					<div className="flex-1 hidden md:flex justify-center items-center rounded-3xl overflow-hidden">
-						<img
-							src={loginIMG}
-							alt="sign-up image"
-							className="rounded-3xl"
-						/>
-					</div>
-					<div className="flex-1 flex justify-center items-center">
-						<form className="flex flex-col h-fit gap-4 w-full my-5 shadow-2xl dark:bg-[#1f2937] shadow-teal-700 dark:shadow-black rounded-2xl p-3 py-5">
-							{/* email input */}
-							<div>
-								<div className="mb-1 ml-1 block">
-									<Label htmlFor="email">Email</Label>
+		<>
+			<Helmet>
+				<title>Socializze Login</title>
+			</Helmet>
+			<div className="w-full dark:bg-[#06606e] overflow-auto">
+				<div className="container mx-auto my-9">
+					<div className="w-full flex gap-3">
+						<div className="flex-1 hidden md:flex justify-center items-center rounded-3xl overflow-hidden">
+							<img
+								src={loginIMG}
+								alt="sign-up image"
+								className="rounded-3xl"
+							/>
+						</div>
+						<div className="flex-1 flex justify-center items-center">
+							<form className="flex flex-col h-fit gap-4 w-full my-5 shadow-2xl dark:bg-[#1f2937] shadow-teal-700 dark:shadow-black rounded-2xl p-3 py-5">
+								{/* email input */}
+								<div>
+									<div className="mb-1 ml-1 block">
+										<Label htmlFor="email">Email</Label>
+									</div>
+									<Controller
+										name="email"
+										control={control}
+										render={({ field }) => (
+											<TextInput
+												id="email"
+												type="email"
+												placeholder="johndoe@gmail.com"
+												required
+												shadow
+												color={"gray"}
+												{...field}
+											/>
+										)}
+									/>
+									{formState.errors.email &&
+										formState.touchedFields.email && (
+											<p className="bg-red-300 border-red-500 text-red-500 rounded-lg p-1.5 mt-1">
+												{formState.errors.email.message}
+											</p>
+										)}
 								</div>
-								<Controller
-									name="email"
-									control={control}
-									render={({ field }) => (
-										<TextInput
-											id="email"
-											type="email"
-											placeholder="johndoe@gmail.com"
-											required
-											shadow
-											color={"gray"}
-											{...field}
-										/>
-									)}
-								/>
-								{formState.errors.email &&
-									formState.touchedFields.email && (
-										<p className="bg-red-300 border-red-500 text-red-500 rounded-lg p-1.5 mt-1">
-											{formState.errors.email.message}
-										</p>
-									)}
-							</div>
 
-							{/* password input */}
-							<div>
-								<div className="mb-1 ml-1 block">
-									<Label htmlFor="password">Password</Label>
+								{/* password input */}
+								<div>
+									<div className="mb-1 ml-1 block">
+										<Label htmlFor="password">
+											Password
+										</Label>
+									</div>
+									<Controller
+										name="password"
+										control={control}
+										render={({ field }) => (
+											<TextInput
+												id="password"
+												type="password"
+												placeholder="********"
+												required
+												shadow
+												color={"gray"}
+												{...field}
+											/>
+										)}
+									/>
+									{formState.errors.password &&
+										formState.touchedFields.password && (
+											<p className="bg-red-300 border-red-500 text-red-500 rounded-lg p-1.5 mt-1">
+												{
+													formState.errors.password
+														.message
+												}
+											</p>
+										)}
 								</div>
-								<Controller
-									name="password"
-									control={control}
-									render={({ field }) => (
-										<TextInput
-											id="password"
-											type="password"
-											placeholder="********"
-											required
-											shadow
-											color={"gray"}
-											{...field}
-										/>
-									)}
-								/>
-								{formState.errors.password &&
-									formState.touchedFields.password && (
-										<p className="bg-red-300 border-red-500 text-red-500 rounded-lg p-1.5 mt-1">
-											{formState.errors.password.message}
-										</p>
-									)}
-							</div>
 
-							{/* submit button */}
-							<Button
-								type="submit"
-								onClick={handleSubmit(onsubmit)}
-								className="dark:bg-teal-500 dark:hover:bg-teal-600 dark:shadow">
-								Login
-							</Button>
-						</form>
+								{/* submit button */}
+								<Button
+									type="submit"
+									onClick={handleSubmit(onsubmit)}
+									className="dark:bg-teal-500 dark:hover:bg-teal-600 dark:shadow">
+									Login
+								</Button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }

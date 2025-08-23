@@ -8,6 +8,7 @@ import { CommentViewerModal } from "../CommentViewerModal/CommentViewerModal";
 import AddCommentModal from "../AddCommentModal/AddCommentModal";
 import CreatePost from "../CreatePost/CreatePost";
 import EditPostModal from "../EditPostModal/EditPostModal";
+import { Helmet } from "react-helmet";
 
 export default function Feed() {
 	const queryClient = useQueryClient();
@@ -37,6 +38,9 @@ export default function Feed() {
 
 	return (
 		<>
+			<Helmet>
+				<title>Socializze Feed</title>
+			</Helmet>
 			<CommentViewerModal
 				openModal={openCommentsModal}
 				setOpenModal={setOpenCommentsModal}

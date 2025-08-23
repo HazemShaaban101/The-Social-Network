@@ -7,6 +7,7 @@ import axios from "axios";
 import PostCard from "../PostCard/PostCard";
 import AddCommentModal from "../AddCommentModal/AddCommentModal";
 import { CommentViewerModal } from "../CommentViewerModal/CommentViewerModal";
+import { Helmet } from "react-helmet";
 
 export default function ViewSinglePost() {
 	const { postID } = useParams();
@@ -29,6 +30,9 @@ export default function ViewSinglePost() {
 
 	return (
 		<>
+			<Helmet>
+				<title>Socilaizze</title>
+			</Helmet>
 			{isLoading ? (
 				<div className="">
 					<div className=" flex items-center justify-center translate-y-3/12">
