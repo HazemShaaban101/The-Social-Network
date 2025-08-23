@@ -12,6 +12,7 @@ import AddCommentModal from "../AddCommentModal/AddCommentModal";
 import ChangePasswordModal from "../ChangePasswordModal/ChangePasswordModal";
 import ChangeProfilePicModal from "../ChangeProfilePicModal/ChangeProfilePicModal";
 import CreatePost from "../CreatePost/CreatePost";
+import EditPostModal from "../EditPostModal/EditPostModal";
 
 export default function Profile() {
 	// modal states
@@ -23,6 +24,10 @@ export default function Profile() {
 		useState(false);
 	const [openChangeProfilePicModal, setOpenChangeProfilePicModal] =
 		useState(false);
+	const [editPostModalPost, setEditPostModalPost] = useState(
+		" hello there from default state value"
+	);
+	const [openEditPostModal, setOpenEditPostModal] = useState(false);
 
 	// get user data
 	function getUserData() {
@@ -165,9 +170,20 @@ export default function Profile() {
 										setOpenAddCommentsModal={
 											setOpenAddCommentsModal
 										}
+										setEditPostModalPost={
+											setEditPostModalPost
+										}
+										setOpenEditPostModal={
+											setOpenEditPostModal
+										}
 									/>
 								);
 							})}
+							<EditPostModal
+								openModal={openEditPostModal}
+								setOpenModal={setOpenEditPostModal}
+								PostToEdit={editPostModalPost}
+							/>
 						</>
 					) : (
 						<div className="h-dvh flex items-center justify-center -translate-y-5/12">

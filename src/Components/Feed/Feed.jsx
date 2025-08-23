@@ -7,6 +7,7 @@ import PostCard from "../PostCard/PostCard";
 import { CommentViewerModal } from "../CommentViewerModal/CommentViewerModal";
 import AddCommentModal from "../AddCommentModal/AddCommentModal";
 import CreatePost from "../CreatePost/CreatePost";
+import EditPostModal from "../EditPostModal/EditPostModal";
 
 export default function Feed() {
 	const queryClient = useQueryClient();
@@ -14,6 +15,8 @@ export default function Feed() {
 	const [openCommentsModal, setOpenCommentsModal] = useState(false);
 	const [addCommentModalPostID, setAddCommentModalPostID] = useState("");
 	const [openAddCommentsModal, setOpenAddCommentsModal] = useState(false);
+	const [editPostModalPost, setEditPostModalPost] = useState("");
+	const [openEditPostModal, setOpenEditPostModal] = useState(false);
 	// get feed posts
 	const feed = () => {
 		return axios.get(`https://linked-posts.routemisr.com/posts?limit=50`, {
@@ -44,6 +47,11 @@ export default function Feed() {
 				setOpenModal={setOpenAddCommentsModal}
 				postID={addCommentModalPostID}
 			/>
+			<EditPostModal
+				openModal={openEditPostModal}
+				setOpenModal={setOpenEditPostModal}
+				PostToEdit={editPostModalPost}
+			/>
 
 			{isLoading ? (
 				<div className="h-dvh flex items-center justify-center -translate-y-1/12">
@@ -66,6 +74,8 @@ export default function Feed() {
 								setOpenAddCommentsModal={
 									setOpenAddCommentsModal
 								}
+								setPostToEdit={setEditPostModalPost}
+								setOpenEditPostModal={setOpenEditPostModal}
 							/>
 						);
 					})}

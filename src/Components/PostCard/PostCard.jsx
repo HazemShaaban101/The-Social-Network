@@ -15,6 +15,8 @@ export default function PostCard({
 	setCommentModalPostID,
 	setOpenAddCommentsModal,
 	setAddCommentModalPostID,
+	setEditPostModalPost,
+	setOpenEditPostModal,
 }) {
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -23,7 +25,7 @@ export default function PostCard({
 
 	return (
 		<>
-			<div className="entirePost relative">
+			<div className="entirePost relative group overflow-hidden">
 				<div
 					className="postCard bg-[#f5f5f5] dark:bg-gradient-to-bl dark:from-teal-600  dark:to-teal-300 dark:text-white w-full drop-shadow-2xl rounded-2xl overflow-hidden"
 					onClick={() => {
@@ -101,10 +103,14 @@ export default function PostCard({
 					</div>
 				</div>
 				{post.user._id == userID && (
-					<div className="absolute top-0 left-[102%] h-[100px]  flex flex-col gap-3 justify-center">
+					<div className="absolute left-1/2 -translate-x-1/2 -top-[50px] group-hover:top-1.5 flex gap-3 transition-all duration-[300ms] delay-[1s]">
 						<Button
 							color={"yellow"}
-							className="w-[40px] h-[40px] rounded-full">
+							className="w-[40px] h-[40px] rounded-full"
+							onClick={() => {
+								setEditPostModalPost(post);
+								setOpenEditPostModal(true);
+							}}>
 							<i className="fa fa-pencil-alt"></i>
 						</Button>
 						<DelPostBtn postID={post._id} />
