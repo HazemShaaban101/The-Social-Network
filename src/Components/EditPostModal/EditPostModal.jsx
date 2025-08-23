@@ -37,9 +37,6 @@ export default function EditPostModal({ openModal, setOpenModal, PostToEdit }) {
 	const queryClient = useQueryClient();
 
 	function handleEditPost(formData) {
-		console.log("1- ", PostToEdit);
-		console.log("2- ", formData);
-
 		return axios.put(
 			`https://linked-posts.routemisr.com/posts/${PostToEdit._id}`,
 			formData,
@@ -72,14 +69,10 @@ export default function EditPostModal({ openModal, setOpenModal, PostToEdit }) {
 	});
 
 	function editPost(data) {
-		// console.log(data.photo);
 		let formData = new FormData();
 		formData.append("body", data.body);
 		formData.append("image", data.image);
-		// for (let pair of formData.entries()) {
-		// 	console.log(pair[0] + ", " + pair[1]);
-		// }
-		console.log("hello from editPost", data);
+
 		mutateEditPost(formData);
 	}
 
@@ -125,7 +118,6 @@ export default function EditPostModal({ openModal, setOpenModal, PostToEdit }) {
 										id="file"
 										onChange={(e) => {
 											field.onChange(e.target.files[0]);
-											console.log(control._formValues);
 											setImage(control._formValues.image);
 										}}
 										accept="image/jpeg, image/png"

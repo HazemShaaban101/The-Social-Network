@@ -100,37 +100,32 @@ export function CommentViewerModal({ openModal, setOpenModal, postID }) {
 												</span>
 												{comment.content}
 											</p>
-											{
-												/* {console.log(comment)} */ comment
-													?.commentCreator?._id ==
-													userData?.data?.data?.user
-														._id && (
-													<div className="flex gap-2">
-														<Button
-															className="w-9"
-															color={"yellow"}
-															onClick={() => {
-																setCommentData(
-																	structuredClone(
-																		{
-																			id: comment._id,
-																			comment:
-																				comment.content,
-																		}
-																	)
-																);
-															}}>
-															<i className="fa fa-pencil text-xs"></i>
-														</Button>
-														<DelCommentBtn
-															commentID={
-																comment._id
-															}
-															postID={postID}
-														/>
-													</div>
-												)
-											}
+											{comment?.commentCreator?._id ==
+												userData?.data?.data?.user
+													._id && (
+												<div className="flex gap-2">
+													<Button
+														className="w-9"
+														color={"yellow"}
+														onClick={() => {
+															setCommentData(
+																structuredClone(
+																	{
+																		id: comment._id,
+																		comment:
+																			comment.content,
+																	}
+																)
+															);
+														}}>
+														<i className="fa fa-pencil text-xs"></i>
+													</Button>
+													<DelCommentBtn
+														commentID={comment._id}
+														postID={postID}
+													/>
+												</div>
+											)}
 										</div>
 									);
 								})}

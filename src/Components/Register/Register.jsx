@@ -61,8 +61,6 @@ export default function Register() {
 			(data) => {
 				const userDate = new Date(`${data.dateOfBirth}` + `T03:24:00`);
 				const currentDate = new Date();
-				console.log(userDate.getFullYear());
-				console.log(currentDate.getFullYear());
 
 				if (userDate.getFullYear() - currentDate.getFullYear() < 18) {
 					return false;

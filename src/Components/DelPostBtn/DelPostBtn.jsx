@@ -15,7 +15,6 @@ export default function DelPostBtn({ postID }) {
 				className="w-[40px] h-[40px] rounded-full"
 				onClick={async () => {
 					setTrashPending(true);
-					console.log(postID);
 
 					axios
 						.delete(
@@ -39,7 +38,6 @@ export default function DelPostBtn({ postID }) {
 						.catch((error) => {
 							setTrashPending(false);
 							toast.error("couldn't delete post");
-							console.log(error);
 						});
 				}}>
 				{trashPending ? (

@@ -25,7 +25,6 @@ export default function CommentEditorModal({
 	});
 
 	useEffect(() => {
-		openModal && console.log(comment);
 		reset({ content: comment.comment });
 	}, [comment]);
 

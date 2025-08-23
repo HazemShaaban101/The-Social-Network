@@ -17,8 +17,6 @@ export default function DelCommentBtn({ commentID, postID }) {
 				color={"red"}
 				onClick={async () => {
 					setTrashPending(true);
-					console.log(commentID);
-					console.log(postID);
 
 					axios
 						.delete(
@@ -41,7 +39,6 @@ export default function DelCommentBtn({ commentID, postID }) {
 						.catch((error) => {
 							setTrashPending(false);
 							toast.error("couldn't delete comment");
-							console.log(error);
 						});
 				}}>
 				{trashPending ? (

@@ -53,9 +53,6 @@ export default function ChangePasswordModal({ openModal, setOpenModal }) {
 	// }, [postID, reset]);
 
 	function handleChangePassword(data) {
-		// console.log("axios data");
-		// console.log(data);
-
 		return axios.patch(
 			`https://linked-posts.routemisr.com/users/change-password`,
 			data,
@@ -70,7 +67,6 @@ export default function ChangePasswordModal({ openModal, setOpenModal }) {
 	const { mutate: mutatePassword, isPending } = useMutation({
 		mutationFn: handleChangePassword,
 		onSuccess: (response) => {
-			console.log(response);
 			localStorage.setItem("socializzeUser", response?.data?.token);
 			// add toasty notification
 			toast.success("Password changed successfully!");
@@ -86,8 +82,6 @@ export default function ChangePasswordModal({ openModal, setOpenModal }) {
 	});
 
 	function changePassword(data) {
-		// console.log(data);
-
 		mutatePassword(data);
 	}
 

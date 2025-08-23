@@ -61,13 +61,12 @@ export default function NavBar({ isDark, toggleDark, userID, setUserID }) {
 	});
 
 	function couldNotFindUser() {
-		console.log("error finding user");
 		localStorage.removeItem("socializzeUser");
 		navigate("/login");
 	}
 	localStorage.getItem("socializzeUser") && !isLoading && error
 		? couldNotFindUser()
-		: console.log(data);
+		: "";
 
 	data?.data && userID != data.data.user._id && setUserID(data.data.user._id);
 	return (

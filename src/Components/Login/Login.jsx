@@ -35,7 +35,6 @@ export default function Login() {
 	});
 
 	function onsubmit(data) {
-		console.log(data);
 		axios
 			.post(`https://linked-posts.routemisr.com/users/signin`, data)
 			.then((response) => {
@@ -58,8 +57,6 @@ export default function Login() {
 				}
 			})
 			.catch((error) => {
-				console.log(error);
-
 				toast.error("Email or password mismatch", {
 					position: "top-center",
 					autoClose: 5000,

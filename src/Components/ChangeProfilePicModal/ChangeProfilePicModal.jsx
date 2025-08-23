@@ -63,11 +63,9 @@ export default function ChangeProfilePicModal({
 	});
 
 	function changePic(data) {
-		console.log(data.photo);
 		let formData = new FormData();
 		formData.set("photo", data.photo);
 		for (let pair of formData.entries()) {
-			console.log(pair[0] + ", " + pair[1]);
 		}
 		mutateProfilePic(formData);
 	}
@@ -100,7 +98,6 @@ export default function ChangeProfilePicModal({
 										id="file"
 										onChange={(e) => {
 											field.onChange(e.target.files[0]);
-											console.log(control._formValues);
 											setImage(control._formValues.photo);
 										}}
 										accept="image/jpeg, image/png"
