@@ -14,7 +14,7 @@ export default function Home() {
 			<Helmet>
 				<title>Socializze Home</title>
 			</Helmet>
-			<div className="w-full dark:bg-[#06606e] overflow-auto">
+			<div className="w-full dark:bg-[#06606e] overflow-auto h-dvh">
 				<div className="container mx-auto">
 					<div className="flex flex-col md:flex-row items-center mt-10 gap-3">
 						<div className="md:flex-1">

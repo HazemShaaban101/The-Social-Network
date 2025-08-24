@@ -25,7 +25,7 @@ export default function PostCard({
 
 	return (
 		<>
-			<div className="entirePost relative group overflow-hidden">
+			<div className="entirePost relative group overflow-hidden last-of-type:mb-3">
 				<div
 					className="postCard bg-[#f5f5f5] dark:bg-gradient-to-bl dark:from-teal-600  dark:to-teal-300 dark:text-white w-full drop-shadow-2xl rounded-2xl overflow-hidden"
 					onClick={() => {
@@ -37,17 +37,21 @@ export default function PostCard({
 						<div className="userData flex gap-3 items-center">
 							<img
 								className="w-8 rounded-full bg-white"
-								src={post.user?.photo}
+								src={post?.user?.photo}
 								alt="user pic"
 							/>
 							<p className="text-teal-500 dark:text-white">
-								{post.user?.name}
+								{post?.user?.name}
 							</p>
 						</div>
 						<p className="text-gray-400">{post.createdAt}</p>
 					</div>
 					<div className="postContent">
-						{post.body && <p className="p-3">{post.body}</p>}
+						{post.body && (
+							<p className="m-3 text-wrap overflow-hidden">
+								{post.body}
+							</p>
+						)}
 						{post.image && (
 							<img
 								className="w-full"

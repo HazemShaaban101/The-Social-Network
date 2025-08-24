@@ -53,7 +53,7 @@ export default function Profile() {
 	// get user data
 	function getUserPosts() {
 		return axios.get(
-			`https://linked-posts.routemisr.com/users/${data.data.user._id}/posts`,
+			`https://linked-posts.routemisr.com/users/${data?.data?.user._id}/posts`,
 			{
 				headers: {
 					token: localStorage.getItem("socializzeUser"),
@@ -65,6 +65,7 @@ export default function Profile() {
 
 	const posts = useQuery({
 		queryKey: ["getUserPosts", localStorage.getItem("socializzeUser")],
+		// queryKey: ["getFeed"],
 		queryFn: getUserPosts,
 		staleTime: 200000,
 		enabled: !!data?.data?.user?._id,
@@ -100,16 +101,17 @@ export default function Profile() {
 			/>
 
 			<div className="userData rounded-b-2xl py-10 bg-gradient-to-br from-teal-600 via-cyan-400 to-teal-800 text-white flex flex-col items-center">
-				<img
-					src={
-						data?.data.user.photo
-							? data?.data.user.photo
-							: StandardUserAvatar
-					}
-					alt="user profile pic"
-					width={"150px"}
-					className="rounded-full mb-5"
-				/>
+				<div className="w-[150px] h-[150px]">
+					<img
+						src={
+							data?.data.user.photo
+								? data?.data.user.photo
+								: StandardUserAvatar
+						}
+						alt="user profile pic"
+						className="rounded-full mb-5 w-full h-full object-cover"
+					/>
+				</div>
 				<p>
 					<span className="font-bold">Name:</span>{" "}
 					{data?.data.user.name}

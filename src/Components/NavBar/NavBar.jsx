@@ -146,37 +146,37 @@ export default function NavBar({ isDark, toggleDark, userID, setUserID }) {
 					<Button
 						as={NavLink}
 						to={"/"}
-						className="md:mr-3 my-2  dark:bg-teal-500 active:bg-red-600 dark:hover:bg-teal-600">
+						className="md:mr-3 my-2  dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 bg-teal-500 active:bg-teal-600 hover:bg-teal-600">
 						Home
 					</Button>
 					<Button
 						as={Link}
 						to={"/about"}
-						className="md:mr-3 my-2 dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600">
+						className="md:mr-3 my-2 dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 bg-teal-500 active:bg-teal-600 hover:bg-teal-600">
 						About
 					</Button>
 					<Button
 						as={Link}
 						to={"/contact"}
-						className="md:mr-3 my-2 dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600">
+						className="md:mr-3 my-2 dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 bg-teal-500 active:bg-teal-600 hover:bg-teal-600">
 						Contact Us
 					</Button>
 					<div className="flex gap-3 my-4 md:my-2 w-full md:w-fit">
 						<Button
 							as={Link}
 							to={"/login"}
-							className="dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 w-full">
+							className="dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 w-full bg-teal-500 active:bg-teal-600 hover:bg-teal-600">
 							Login
 						</Button>
 						<Button
 							as={Link}
 							to={"/register"}
-							className="dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 w-full">
+							className="dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 w-full bg-teal-500 active:bg-teal-600 hover:bg-teal-600">
 							Register
 						</Button>
 					</div>
 					<Button
-						className="md:mr-3 my-2 aspect-square dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600"
+						className="md:mr-3 my-2 aspect-square dark:bg-teal-500 dark:active:bg-teal-600 dark:hover:bg-teal-600 bg-teal-500 active:bg-teal-600 hover:bg-teal-600"
 						onClick={toggleTheme}>
 						<i className={themeIcon}></i>
 					</Button>

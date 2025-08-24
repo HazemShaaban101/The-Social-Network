@@ -30,9 +30,6 @@ export default function AddCommentModal({ openModal, setOpenModal, postID }) {
 	}, [postID, reset]);
 
 	function handleAddComment(data) {
-		console.log("axios data");
-		console.log(data);
-
 		return axios.post(`https://linked-posts.routemisr.com/comments`, data, {
 			headers: {
 				token: localStorage.getItem("socializzeUser"),
@@ -58,8 +55,6 @@ export default function AddCommentModal({ openModal, setOpenModal, postID }) {
 	});
 
 	function addComment(data) {
-		console.log(data);
-
 		mutateComment(data);
 	}
 

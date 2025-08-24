@@ -16,11 +16,14 @@ import axios from "axios";
 import CommentEditorModal from "../CommentEditorModal/CommentEditorModal";
 import { toast } from "react-toastify";
 import DelCommentBtn from "../DelCommentBtn/DelCommentBtn";
+import { useLocation } from "react-router-dom";
 
 export function CommentViewerModal({ openModal, setOpenModal, postID }) {
 	const [commentData, setCommentData] = useState({ id: "", comment: "" });
 
 	const [openEditCommentModal, setOpenEditCommentModal] = useState(false);
+
+	const { pathname } = useLocation();
 
 	const getPostComments = () => {
 		return axios.get(
@@ -120,10 +123,14 @@ export function CommentViewerModal({ openModal, setOpenModal, postID }) {
 														}}>
 														<i className="fa fa-pencil text-xs"></i>
 													</Button>
-													<DelCommentBtn
-														commentID={comment._id}
-														postID={postID}
-													/>
+													{pathname == "/profile" && (
+														<DelCommentBtn
+															commentID={
+																comment._id
+															}
+															postID={postID}
+														/>
+													)}
 												</div>
 											)}
 										</div>

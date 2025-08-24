@@ -78,7 +78,7 @@ export default function Feed() {
 								setOpenAddCommentsModal={
 									setOpenAddCommentsModal
 								}
-								setPostToEdit={setEditPostModalPost}
+								setEditPostModalPost={setEditPostModalPost}
 								setOpenEditPostModal={setOpenEditPostModal}
 							/>
 						);

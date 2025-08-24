@@ -10,7 +10,7 @@ export default function CreatePost() {
 				openModal={openCreatePostModal}
 				setOpenModal={setOpenCreatePostModal}
 			/>
-			<div className="createPost py-5 px-3 bg-gradient-to-tl from-teal-600 to-teal-400 rounded-2xl">
+			<div className="createPost py-5 px-3 bg-gradient-to-tl from-teal-600 to-teal-400 rounded-2xl mb-4">
 				<p
 					className="bg-teal-700 text-teal-400 p-4 pl-6 text-xl rounded-full cursor-pointer"
 					onClick={() => {

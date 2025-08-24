@@ -17,7 +17,6 @@ export default function DelCommentBtn({ commentID, postID }) {
 				color={"red"}
 				onClick={async () => {
 					setTrashPending(true);
-
 					axios
 						.delete(
 							`https://linked-posts.routemisr.com/comments/${commentID}`,
@@ -37,6 +36,7 @@ export default function DelCommentBtn({ commentID, postID }) {
 							toast.success("Comment deleted successfully");
 						})
 						.catch((error) => {
+							console.log(error);
 							setTrashPending(false);
 							toast.error("couldn't delete comment");
 						});

@@ -76,7 +76,7 @@ export default function Login() {
 			<Helmet>
 				<title>Socializze Login</title>
 			</Helmet>
-			<div className="w-full dark:bg-[#06606e] overflow-auto">
+			<div className="w-full dark:bg-[#06606e] overflow-auto h-dvh">
 				<div className="container mx-auto my-9">
 					<div className="w-full flex gap-3">
 						<div className="flex-1 hidden md:flex justify-center items-center rounded-3xl overflow-hidden">
