@@ -11,6 +11,7 @@ import Profile from "./Components/Profile/Profile";
 import Footer from "./Components/Footer/Footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ViewSinglePost from "./Components/ViewSinglePost/ViewSinglePost";
+import NotFound from "./Components/NotFound/NotFound";
 
 function App() {
 	const router = createBrowserRouter([
@@ -24,6 +25,7 @@ function App() {
 				{ path: "/feed", element: <Feed /> },
 				{ path: "/profile", element: <Profile /> },
 				{ path: "/posts/:postID", element: <ViewSinglePost /> },
+				{ path: "/*", element: <NotFound /> },
 			],
 		},
 	]);
